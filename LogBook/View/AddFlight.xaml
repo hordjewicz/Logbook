@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.AddFlight"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    Title="Add flight">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,0" Spacing="5">
+
+            <Label
+                Padding="10,0"
+                BackgroundColor="#0450C2"
+                FontAttributes="Bold"
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                Text="Flight details"
+                VerticalTextAlignment="Center" 
+                TextColor="White"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <core:SfTextInputLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Select a date"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <DatePicker
+                        x:Name="datePicker"
+                        Date="{Binding SelectedDate}"
+                        Format="dd-MM-yyyy"
+                        MaximumDate="2050-12-31"
+                        MinimumDate="2000-01-01" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Departure Airport"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="AirportD" />
+
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Arrival Airport"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="AirportA" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Departure time"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <TimePicker
+                        x:Name="timePickerD"
+                        Format="HH:mm"
+                        Time="{Binding SelectedTime}"
+                        TimeSelected="timePickerD_TimeSelected" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Arrival time"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <TimePicker
+                        x:Name="timePickerA"
+                        Format="HH:mm"
+                        Time="{Binding SelectedTime}"
+                        TimeSelected="timePickerA_TimeSelected" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Total time"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <TimePicker
+                        x:Name="timePickerT"
+                        Format="HH:mm"
+                        Time="{Binding SelectedTime}" />
+                </core:SfTextInputLayout>
+
+            </Grid>
+
+            <Label
+                Padding="10,0"
+                BackgroundColor="#0450C2"
+                FontAttributes="Bold"
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                Text="Aircraft and crew"
+                VerticalTextAlignment="Center" 
+                TextColor="White"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <core:SfTextInputLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Aircraft"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <editors:SfComboBox IsClearButtonVisible="False" />
+                </core:SfTextInputLayout>
+
+                <buttons:SfButton
+                    x:Name="AddAircraftBtn"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5"
+                    Background="BlueViolet"
+                    Clicked="OnCounterClicked"
+                    CornerRadius="15"
+                    FontAttributes="Bold"
+                    FontFamily="OpenSans-Semibold.ttf"
+                    HeightRequest="40"
+                    HorizontalOptions="Start"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Add aircraft"
+                    VerticalOptions="Start"
+                    WidthRequest="100">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="Orange" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="MediumVioletRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#BFC3C7" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfButton>
+
+
+                <core:SfTextInputLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="PIC name"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="PICName" Text="Self" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Pilot function"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <editors:SfComboBox IsClearButtonVisible="False" />
+                </core:SfTextInputLayout>
+
+            </Grid>
+
+
+            <Label
+                Padding="10,0"
+                BackgroundColor="#0450C2"
+                FontAttributes="Bold"
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                Text="Take-Offs and Landings"
+                VerticalTextAlignment="Center"
+                TextColor="White"/>
+
+            <core:SfTextInputLayout
+                ContainerType="Outlined"
+                HeightRequest="65"
+                Hint="Number of take-offs and landings"
+                HorizontalOptions="Start"
+                InputViewPadding="15,10"
+                IsHintAlwaysFloated="True"
+                Stroke="#0450C2">
+                <editors:SfNumericEntry
+                    CustomFormat="0"
+                    IsEditable="False"
+                    Minimum="0"
+                    UpDownPlacementMode="InlineVertical"
+                    VerticalOptions="Start"
+                    WidthRequest="200"
+                    Value="1" />
+            </core:SfTextInputLayout>
+
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <buttons:SfButton
+                    x:Name="SaveFlightBtn"
+                    Grid.Column="0"
+                    Background="BlueViolet"
+                    Clicked="OnCounterClicked"
+                    CornerRadius="15"
+                    FontAttributes="Bold"
+                    FontFamily="OpenSans-Semibold.ttf"
+                    HorizontalOptions="Start"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Save flight"
+                    WidthRequest="140">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="Orange" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="MediumVioletRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#BFC3C7" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfButton>
+
+                <buttons:SfButton
+                    x:Name="CounterBtn1"
+                    Grid.Column="1"
+                    Background="Orange"
+                    Clicked="OnCounterClicked"
+                    CornerRadius="15"
+                    FontAttributes="Bold"
+                    FontFamily="OpenSans-Semibold.ttf"
+                    HorizontalOptions="End"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Cancel"
+                    WidthRequest="140">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="Orange" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="MediumVioletRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#BFC3C7" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfButton>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LogBook.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LogBook.View"
+    Title="LogBook">
+
+    <FlyoutItem Title="Add flight">
+        <ShellContent ContentTemplate="{DataTemplate local:AddFlight}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Log view">
+        <ShellContent ContentTemplate="{DataTemplate local:LogView}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Log list view">
+        <ShellContent ContentTemplate="{DataTemplate local:LogListView}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Aircraft list">
+        <ShellContent ContentTemplate="{DataTemplate local:Aircrafts}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate local:Settings}" />
+    </FlyoutItem>
+
+</Shell>

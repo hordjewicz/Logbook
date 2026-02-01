@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.FlightDetails"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Flight details">
+
+    <VerticalStackLayout>
+        <Label Text="{Binding date, StringFormat='Flight Date: {0:dd/MM/yyyy}'}" />
+        <Label Text="{Binding AircraftType, StringFormat='Aircraft type: {0}'}" />
+        <Label Text="{Binding AircraftIdent, StringFormat='Aircraft Ident: {0}'}" />
+        <Label Text="{Binding Departure, StringFormat='Departure: {0}'}" />
+        <Label Text="{Binding Arrival, StringFormat='Arrival: {0}'}" />
+        <Label Text="{Binding DepartureTime, StringFormat='Departure time: {0:HH:mm}'}" />
+        <Label Text="{Binding ArrivalTime, StringFormat='Arrival time: {0:HH:mm}'}" />
+        <Label Text="{Binding Landings, StringFormat='Landings: {0}'}" />
+        <Label Text="{Binding PilotingTimeType, StringFormat='Piloting time type: {0}'}" />
+        <Label Text="{Binding TotalTime, StringFormat='Total time: {0:hh\\:mm}'}" />
+    </VerticalStackLayout>
+</ContentPage>

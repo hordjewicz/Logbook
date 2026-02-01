@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.Settings"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    Title="Settings">
+    <Grid Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <buttons:SfButton
+            x:Name="BackupDatabaseBtn"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5"
+            Background="BlueViolet"
+            CornerRadius="15"
+            FontAttributes="Bold"
+            FontFamily="OpenSans-Semibold.ttf"
+            HeightRequest="40"
+            HorizontalOptions="Start"
+            SemanticProperties.Hint="Backup database"
+            Text="Create database"
+            VerticalOptions="Start"
+            WidthRequest="150"
+            Clicked="BackupDatabaseBtn_Clicked">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="Orange" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="MediumVioletRed" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#BFC3C7" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </buttons:SfButton>
+
+        <buttons:SfButton
+            x:Name="NewDatabaseBtn"
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            Background="BlueViolet"
+            CornerRadius="15"
+            FontAttributes="Bold"
+            FontFamily="OpenSans-Semibold.ttf"
+            HeightRequest="40"
+            HorizontalOptions="Start"
+            SemanticProperties.Hint="New database"
+            Text="Delete database"
+            VerticalOptions="Start"
+            WidthRequest="150"
+            Clicked="NewDatabaseBtn_Clicked">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="Orange" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="MediumVioletRed" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#BFC3C7" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </buttons:SfButton>
+
+
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.AddAircraft"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    Title="Add aircraft">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,0" Spacing="5">
+
+            <Label
+                Padding="10,0"
+                BackgroundColor="LightSeaGreen"
+                FontAttributes="Bold"
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                Text="Aircraft details"
+                VerticalTextAlignment="Center" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <core:SfTextInputLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Manufacturer"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="Manufacturer" />
+
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Model"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="Model" />
+                </core:SfTextInputLayout>
+
+                <core:SfTextInputLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    ContainerType="Outlined"
+                    HeightRequest="65"
+                    Hint="Registration"
+                    HorizontalOptions="Start"
+                    InputViewPadding="15,0"
+                    IsHintAlwaysFloated="True"
+                    Stroke="#0450C2">
+                    <Entry x:Name="Registration" />
+                </core:SfTextInputLayout>
+
+            </Grid>
+
+            <Label
+                Padding="10,0"
+                BackgroundColor="LightSeaGreen"
+                FontAttributes="Bold"
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                Text="Aircraft and crew"
+                VerticalTextAlignment="Center" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <buttons:SfButton
+                    x:Name="SaveFlightBtn"
+                    Grid.Column="0"
+                    Background="BlueViolet"
+                    Clicked="OnCounterClicked"
+                    CornerRadius="15"
+                    FontAttributes="Bold"
+                    FontFamily="OpenSans-Semibold.ttf"
+                    HorizontalOptions="Start"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Save flight"
+                    WidthRequest="140">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="Orange" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="MediumVioletRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#BFC3C7" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfButton>
+
+                <buttons:SfButton
+                    x:Name="CounterBtn1"
+                    Grid.Column="1"
+                    Background="Orange"
+                    Clicked="OnCounterClicked"
+                    CornerRadius="15"
+                    FontAttributes="Bold"
+                    FontFamily="OpenSans-Semibold.ttf"
+                    HorizontalOptions="End"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Cancel"
+                    WidthRequest="140">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="Orange" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="MediumVioletRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#BFC3C7" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfButton>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

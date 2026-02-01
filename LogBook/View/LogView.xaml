@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.LogView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LogBook.ViewModel"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    Title="LogView">
+
+    <ContentPage.BindingContext>
+        <local:LogViewVM x:Name="viewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="syncfusion:DataGridCell">
+            <Setter Property="Background" Value="#AFD5FB" />
+            <Setter Property="TextColor" Value="#212121" />
+            <Setter Property="FontAttributes" Value="None" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="TimesNewRoman" />
+        </Style>
+        <Style TargetType="syncfusion:DataGridHeaderCell">
+            <Setter Property="Background" Value="#0074E3" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="TimesNewRoman" />
+        </Style>
+        <Style TargetType="syncfusion:DataGridCaptionSummaryRowView">
+            <Setter Property="Background" Value="#0074E3" />
+        </Style>
+        <Style TargetType="syncfusion:DataGridCaptionSummaryCell">
+            <Setter Property="Background" Value="#0074E3" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="TimesNewRoman" />
+        </Style>
+
+        <Style TargetType="syncfusion:DataGridGroupSummaryRowView">
+            <Setter Property="Background" Value="#0074E3" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="10,0" Spacing="5">
+                <syncfusion:SfDataGrid
+                    x:Name="dataGrid"
+                    AllowEditing="False"
+                    CellTapped="dataGrid_CellTapped"
+                    HeaderGridLinesVisibility="Both"
+                    HeaderRowHeight="60"
+                    HorizontalScrollBarVisibility="Always"
+                    ItemsSource="{Binding FlightInfoCollection}"
+                    SortingMode="Single">
+                    <syncfusion:SfDataGrid.Columns>
+                        <syncfusion:DataGridNumericColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            Format="0"
+                            HeaderText="Id"
+                            HeaderTextAlignment="Start"
+                            MappingName="Id"
+                            Visible="False" />
+                        <syncfusion:DataGridDateColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            Format="dd/MM/yyy"
+                            HeaderText="Date"
+                            HeaderTextAlignment="Start"
+                            MappingName="date" />
+                        <syncfusion:DataGridTextColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            HeaderText="Aircraft type"
+                            HeaderTextAlignment="Start"
+                            MappingName="AircraftType" />
+                        <syncfusion:DataGridTextColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            HeaderText="Aircraft Ident"
+                            HeaderTextAlignment="Start"
+                            MappingName="AircraftIdent" />
+                        <syncfusion:DataGridTextColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            HeaderText="Departure"
+                            HeaderTextAlignment="Start"
+                            MappingName="Departure" />
+                        <syncfusion:DataGridDateColumn
+                            Width="100"
+                            CellPadding="0,0"
+                            CellTextAlignment="Start"
+                            Format="HH:mm"
+                            HeaderText="Departure Time"
+                            HeaderTextAlignment="Start"
+                            MappingName="DepartureTime" />
+                        <syncfusion:DataGridTextColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            HeaderText="Arrival"
+                            HeaderTextAlignment="Start"
+                            MappingName="Arrival" />
+                        <syncfusion:DataGridDateColumn
+                            Width="100"
+                            CellPadding="0,0"
+                            CellTextAlignment="Start"
+                            Format="HH:mm"
+                            HeaderText="Arrival Time"
+                            HeaderTextAlignment="Start"
+                            MappingName="ArrivalTime" />
+                        <syncfusion:DataGridNumericColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            Format="0"
+                            HeaderText="Landings"
+                            HeaderTextAlignment="Start"
+                            MappingName="Landings" />
+                        <syncfusion:DataGridTextColumn
+                            Width="80"
+                            CellPadding="2,0"
+                            CellTextAlignment="Start"
+                            HeaderText="Piloting time type"
+                            HeaderTextAlignment="Start"
+                            MappingName="PilotingTimeType" />
+                        <syncfusion:DataGridTextColumn
+                            Width="100"
+                            CellPadding="0,0"
+                            CellTextAlignment="Start"
+                            Format="hh:mm"
+                            HeaderText="Total Time"
+                            HeaderTextAlignment="Start"
+                            MappingName="TotalTime" />
+                    </syncfusion:SfDataGrid.Columns>
+                </syncfusion:SfDataGrid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

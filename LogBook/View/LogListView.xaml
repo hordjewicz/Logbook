@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LogBook.View.LogListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dataGrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:local="clr-namespace:LogBook.ViewModel">
+
+    <ContentPage.BindingContext>
+        <local:LogViewVM />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <listView:SfListView
+            x:Name="ListView"
+            Margin="10,10,10,10"
+            ItemDoubleTapped="ListView_ItemDoubleTapped"
+            ItemSize="120"
+            ItemSpacing="5"
+            ItemTapped="ListView_ItemTapped"
+            ItemsSource="{Binding FlightInfoCollection}"
+            SwipeEnded="ListView_SwipeEnded">
+
+            <listView:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#0450C2" StrokeShape="RoundRectangle 10,10,10,10">
+                        <Grid Padding="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="0.2*" />
+                                <RowDefinition Height="0.2*" />
+                                <RowDefinition Height="0.2*" />
+                                <RowDefinition Height="0.2*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                x:Name="date"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Padding="10,0"
+                                BackgroundColor="#0450C2"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="Fill"
+                                Text="{Binding date, StringFormat='Flight Date: {0:dd/MM/yyyy}'}"
+                                TextColor="White"
+                                VerticalTextAlignment="Center" />
+
+                            <Label
+                                x:Name="label"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="10,0"
+                                BackgroundColor="#0450C2"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding PilotingTimeType, StringFormat='{0}'}"
+                                TextColor="White"
+                                VerticalTextAlignment="Center" />
+
+                            <Label
+                                x:Name="aircraftident"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding AircraftIdent, StringFormat='Aircraft ident: {0}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="aircraftype"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding AircraftType, StringFormat='Aircraft type: {0}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="departuretime"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding DepartureTime, StringFormat='Departure time: {0:hh:mm}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="departure"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding Departure, StringFormat='Departure: {0}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="arrivaltime"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding ArrivalTime, StringFormat='Arrival time: {0:hh:mm}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="arrival"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Padding="10,0"
+                                FontSize="12"
+                                Text="{Binding Arrival, StringFormat='Arrival: {0}'}"
+                                TextColor="Black" />
+
+                            <Label
+                                x:Name="totaltime"
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Padding="10,0"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                Text="{Binding TotalTime, StringFormat='Total time: {0:hh\\:mm}'}"
+                                TextColor="Black" />
+
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+        </listView:SfListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,4 @@
-name: MAUI iOS (.NET 9)
+name: MAUI iOS Build (.NET 8)
 
 on:
   push:
@@ -10,35 +10,46 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout
+    # 1. Pobranie repozytorium
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup .NET 9
+    # 2. Instalacja .NET 8 (konkretna wersja)
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.404'
 
+    # 3. WYŁĄCZENIE ostrzeżeń EOL (KLUCZOWE)
+    - name: Disable .NET EOL warnings
+      run: |
+        echo "DOTNET_CLI_DO_NOT_WARN_ON_EOL=1" >> $GITHUB_ENV
+
+    # 4. Upewnienie się, że Xcode jest aktywny
     - name: Select Xcode
       run: sudo xcode-select -s /Applications/Xcode.app
 
+    # 5. Instalacja workloadów MAUI i iOS
     - name: Install MAUI workloads
-      run: dotnet workload install maui ios maccatalyst
+      run: |
+        dotnet workload install maui ios
 
+    # 6. Restore paczek
     - name: Restore
       run: dotnet restore
 
+    # 7. Build iOS (bez podpisu)
     - name: Build iOS
       run: |
-        dotnet publish \
+        dotnet build \
           -f net8.0-ios \
           -c Release \
-          /p:ArchiveOnBuild=true \
           /p:EnableCodeSigning=false
 
-    - name: Upload artifact
+    # 8. (Opcjonalnie) upload artefaktów
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ios-build
         path: |
-          **/*.xcarchive
-          **/*.app
+          **/bin/Release/net8.0-ios/**

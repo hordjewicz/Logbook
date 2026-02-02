@@ -1,41 +1,37 @@
-name: MAUI iOS Build (.NET 8)
+name: Build iOS MAUI
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   build-ios:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.404'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.101
 
-    - name: Disable .NET EOL warnings
-      run: |
-        echo "DOTNET_CLI_DO_NOT_WARN_ON_EOL=1" >> $GITHUB_ENV
-        echo "DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1" >> $GITHUB_ENV
+      - name: Install MAUI workloads
+        run: |
+          dotnet workload install maui maui-ios --ignore-failed-sources
+          dotnet workload restore
 
-    - name: Select Xcode
-      run: sudo xcode-select -s /Applications/Xcode.app
+      - name: Restore NuGet packages
+        run: dotnet restore
 
-    - name: Install MAUI workloads
-      run: dotnet workload install maui ios
+      - name: Build iOS
+        run: dotnet publish YourProject.csproj -c Release -f net8.0-ios /p:TreatWarningsAsErrors=false
 
-    - name: Restore
-      run: dotnet restore
-
-    - name: Build iOS
-      run: |
-        dotnet build -f net8.0-ios -c Release /p:EnableCodeSigning=false
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ios-build
-        path: "**/bin/Release/net8.0-ios/"
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-build
+          path: |
+            **/bin/Release/net8.0-ios/**/*.ipa

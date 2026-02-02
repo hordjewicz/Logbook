@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.101
+          dotnet-version: 8.0.102
 
       - name: Install MAUI workloads
         run: |
@@ -27,7 +27,7 @@ jobs:
         run: dotnet restore
 
       - name: Build iOS
-        run: dotnet publish Logbook.csproj -c Release -f net8.0-ios /p:TreatWarningsAsErrors=false
+        run: dotnet publish \Logbook\Logbook.csproj -c Release -f net8.0-ios /p:TreatWarningsAsErrors=false
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v3
